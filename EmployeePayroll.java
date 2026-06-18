@@ -3,7 +3,6 @@
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 
 abstract class Employee {
     protected String name;
@@ -51,11 +50,13 @@ class Contractor extends Employee {
 
 public class EmployeePayroll {
     public static void main(String[] args) {
-        ArrayList<Employee> staff = new ArrayList<>();
-        staff.add(new FullTime("Maya", 60000));
-        staff.add(new Contractor("Ram", 900, 45));
-        staff.add(new FullTime("Sita", 75000));
-        staff.add(new Contractor("Hari", 1200, 30));
+
+        Employee[] staff = {
+            new FullTime("Maya", 60000),
+            new Contractor("Ram", 900, 45),
+            new FullTime("Sita", 75000),
+            new Contractor("Hari", 1200, 30)
+        };
 
         String fileName = "payroll_report.txt";
 
@@ -66,7 +67,9 @@ public class EmployeePayroll {
                 writer.newLine();
                 System.out.println(line);
             }
+
             System.out.println("Payroll exported to " + fileName);
+
         } catch (IOException e) {
             System.out.println("Error writing payroll report: " + e.getMessage());
         }
