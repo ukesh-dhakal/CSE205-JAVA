@@ -3,21 +3,23 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class LogFileReader {
     public static void main(String[] args) {
         String fileName = "server.log";
-        createSampleLogIfMissing(fileName); 
+        createSampleLogIfMissing(fileName);
 
-        ArrayList<String> errorLines = new ArrayList<>();
+        String[] errorLines = new String[100];
+        int errorCount = 0;
 
         try (Scanner scanner = new Scanner(new File(fileName))) {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
+
                 if (line.contains("ERROR")) {
-                    errorLines.add(line);
+                    errorLines[errorCount] = line;
+                    errorCount++;
                 }
             }
         } catch (IOException e) {
@@ -25,13 +27,14 @@ public class LogFileReader {
         }
 
         System.out.println("Lines containing ERROR:");
-        for (String line : errorLines) {
-            System.out.println(line);
+        for (int i = 0; i < errorCount; i++) {
+            System.out.println(errorLines[i]);
         }
     }
 
     private static void createSampleLogIfMissing(String fileName) {
         File file = new File(fileName);
+
         if (file.exists()) {
             return; // do not overwrite an existing log file
         }
