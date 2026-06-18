@@ -1,21 +1,20 @@
 // Practice 6: Duplicate Finder
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 public class DuplicateFinder {
     public static void main(String[] args) {
-        ArrayList<String> guests = new ArrayList<>(Arrays.asList(
-                "Aarav", "Maya", "Sita", "Aarav", "Ram", "Maya", "Nabin", "Sita"
-        ));
+
+        String[] guests = {
+            "Aarav", "Maya", "Sita", "Aarav",
+            "Ram", "Maya", "Nabin", "Sita"
+        };
 
         System.out.println("Duplicate guest names:");
 
-        for (int i = 0; i < guests.size(); i++) {
+        for (int i = 0; i < guests.length; i++) {
             boolean alreadyPrinted = false;
 
             for (int k = 0; k < i; k++) {
-                if (guests.get(i).equals(guests.get(k))) {
+                if (guests[i].equals(guests[k])) {
                     alreadyPrinted = true;
                     break;
                 }
@@ -25,9 +24,9 @@ public class DuplicateFinder {
                 continue; // avoids printing the same duplicate name again
             }
 
-            for (int j = i + 1; j < guests.size(); j++) {
-                if (guests.get(i).equals(guests.get(j))) {
-                    System.out.println(guests.get(i));
+            for (int j = i + 1; j < guests.length; j++) {
+                if (guests[i].equals(guests[j])) {
+                    System.out.println(guests[i]);
                     break;
                 }
             }
