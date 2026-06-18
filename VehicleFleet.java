@@ -1,7 +1,5 @@
 // Practice 11: Vehicle Fleet
 
-import java.util.ArrayList;
-
 abstract class Vehicle {
     protected String name;
     protected int rentalDays;
@@ -43,10 +41,12 @@ class Bus extends Vehicle {
 
 public class VehicleFleet {
     public static void main(String[] args) {
-        ArrayList<Vehicle> fleet = new ArrayList<>();
-        fleet.add(new Bike("Mountain Bike", 3));
-        fleet.add(new Bus("Tourist Bus", 2));
-        fleet.add(new Bike("City Bike", 5));
+
+        Vehicle[] fleet = {
+            new Bike("Mountain Bike", 3),
+            new Bus("Tourist Bus", 2),
+            new Bike("City Bike", 5)
+        };
 
         for (Vehicle vehicle : fleet) {
             vehicle.printFee();
